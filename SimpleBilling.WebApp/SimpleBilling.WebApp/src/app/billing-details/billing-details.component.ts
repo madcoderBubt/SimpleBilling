@@ -58,8 +58,10 @@ export class BillingDetailsComponent implements OnInit {
     }, error => console.error(error));
   }
   saveInventoryData() {
+    debugger;
     if (this.inventoryForm.valid) {
-      this.http.post<Inventory>(this.baseUrl + 'Billing/inventory', this.inventoryForm.getRawValue()).subscribe(result => {
+      let data: Inventory = this.inventoryForm.getRawValue() as Inventory;
+      this.http.post<Inventory>(this.baseUrl + 'Billing/inventory', data).subscribe(result => {
         this.findByBillNo();
       }, error => console.error(error));
     } else console.log("Form Data is invalid!")

@@ -1,4 +1,6 @@
-﻿namespace SimpleBilling.WebApi.Model;
+﻿using System.Text.Json.Serialization;
+
+namespace SimpleBilling.WebApi.Model;
 
 public class Inventory
 {
@@ -10,8 +12,10 @@ public class Inventory
     public decimal TotalBillAmount { get; set; }
     public decimal DueAmount { get; set; }
     public decimal PaidAmount { get; set; }
+    //[JsonIgnore]
     public List<InventoryProduct> Products { get; set; }
-    public Customer Customer { get; set; }
+    [JsonIgnore]
+    public Customer? Customer { get; set; }
 }
 
 public class InventoryProduct
@@ -22,7 +26,8 @@ public class InventoryProduct
     public decimal Rate { get; set; }
     public decimal Discount { get; set; }
     public int Qty { get; set; }
-    public Product Product { get; set; }
+    [JsonIgnore]
+    public Product? Product { get; set; }
 }
 
 public class Product

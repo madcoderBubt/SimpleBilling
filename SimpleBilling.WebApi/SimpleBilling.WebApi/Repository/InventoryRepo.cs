@@ -77,8 +77,8 @@ public class InventoryRepo : IInventoryRepo
     {
         using (var connection = new SqlConnection(_connectionString))
         {
-            var query = $"UPDATE {typeof(Inventory).Name} " +
-                @$"[Date] = @Date,[BillNo] = @BillNo,[CustomerId] = @CustomerId,[TotalDiscount] = @TotalDiscount,
+            var query = $"UPDATE {typeof(Inventory).Name} set " +
+                @$"[Date] = '{entity.Date.ToString("yyyy-MM-dd HH:mm:ss")}',[BillNo] = @BillNo,[CustomerId] = @CustomerId,[TotalDiscount] = @TotalDiscount,
                 [TotalBillAmount] = @TotalBillAmount,[DueAmount] = @DueAmount,[PaidAmount] = @PaidAmount WHERE Id = @Id"; 
             await connection.ExecuteAsync(query, entity);
         }
@@ -90,10 +90,10 @@ public class InventoryRepo : IInventoryRepo
         {
             var query = $"UPDATE {typeof(InventoryProduct).Name} " +
                 @$"SET [InventoryId] = @InventoryId
-                      ,[ProductId] = ProductId
-                      ,[Rate] = Rate
-                      ,[Qty] = Qty
-                      ,[Discount] = Discount
+                      ,[ProductId] = @ProductId
+                      ,[Rate] = @Rate
+                      ,[Qty] = @Qty
+                      ,[Discount] = @Discount
                  WHERE Id = @Id"; 
             await connection.ExecuteAsync(query, entity);
         }

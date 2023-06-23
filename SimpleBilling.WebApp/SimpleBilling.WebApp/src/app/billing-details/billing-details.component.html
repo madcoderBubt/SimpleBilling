@@ -93,7 +93,7 @@
             <div class="input-group-prepend">
               <label class="input-group-text" for="">Paid Total</label>
             </div>
-            <input type="text" class="form-control" formControlName="paidAmount" />
+            <input type="text" class="form-control" formControlName="paidAmount" (keyup)="onChangeCalc()"/>
           </div>
         </div>
         <div class="col-12 mb-2">
@@ -106,7 +106,7 @@
         </div>
 
         <div class="col-12 mb-2">
-          <input type="button" class="form-control" value="Save Changes" (click)="saveInventoryData" />  
+          <input type="button" class="form-control" value="Save Changes" (click)="saveInventoryData()" />  
         </div>
 
       </div>
