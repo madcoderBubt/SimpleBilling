@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SimpleBilling.WebApp", "SimpleBilling.WebApp\SimpleBilling.WebApp.esproj", "{EBC88F49-90E2-45D8-9C28-28ADC9DD8307}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBC88F49-90E2-45D8-9C28-28ADC9DD8307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC88F49-90E2-45D8-9C28-28ADC9DD8307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC88F49-90E2-45D8-9C28-28ADC9DD8307}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EBC88F49-90E2-45D8-9C28-28ADC9DD8307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC88F49-90E2-45D8-9C28-28ADC9DD8307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC88F49-90E2-45D8-9C28-28ADC9DD8307}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7A54F98-57E5-4225-89BB-D39E6304D5FC}
+	EndGlobalSection
+EndGlobal

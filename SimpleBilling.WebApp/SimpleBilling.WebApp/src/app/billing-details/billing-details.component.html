@@ -1,0 +1,115 @@
+
+<h1>Billing Details</h1>
+<div class="row">
+  <div class="col-4">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control"
+             placeholder="Billing No" [(ngModel)]="billNo" >
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="button" (click)="findByBillNo()" [disabled]="billNo==''">Find</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--[formGroup]="profileForm"-->
+<form [formGroup]="inventoryForm" >
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group">
+        <select id="needToBeAddedProductId" class="form-control" >
+          <option selected>Select Product</option>
+          <option *ngFor="let op of products" value="{{op.id}}">{{op.name}}</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" (click)="addNewProduct()">Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="">Customer</label>
+        </div>
+        <select class="form-control" id="sltCustomer" formControlName="customerId">
+          <option value="-1">Select Customer</option>
+          <option value="{{op.id}}" *ngFor="let op of customers">{{op.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="">Date</label>
+        </div>
+        <input type="datetime-local" name="name" formControlName="date" class="form-control" />
+      </div>
+    </div>
+  </div>
+
+  <table class='table table-striped' aria-labelledby="tableLabel">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Rate</th>
+        <th>Qty</th>
+        <th>Total Amount</th>
+        <th>Discount</th>
+        <th>Net Amount</th>
+      </tr>
+    </thead>
+    <tbody formArrayName="products">
+      <tr [formGroupName]="i" *ngFor="let item of getItems()?.controls; let i=index" >
+        <td>{{ getProductName(item.get("productId")?.value) }}</td>
+        <td>{{ item.get("rate")?.value }}</td>
+        <td><input type="number" name="name" placeholder="Qty" formControlName="qty" class="form-control" (keyup)="onChangeCalc()" /></td>
+        <td>{{ (item.get("rate")?.value *  item.get("qty")?.value) | number : '1.0-2' }}</td>
+        <td><input type="number" name="name" placeholder="Discount" formControlName="discount" (keyup)="onChangeCalc()" class="form-control" /></td>
+        <td>{{ ((item.get("rate")?.value *  item.get("qty")?.value) - ((item.get("qty")?.value>0) ? item.get("discount")?.value:0)) | number : '1.0-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row justify-content-end">
+    <div class="col-3 align-self-end">
+      <div class="row">
+
+        <div class="col-12 mb-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="">Net Total</label>
+            </div>
+            <input type="text" class="form-control" formControlName="totalBillAmount" readonly />
+          </div>
+        </div>
+        <div class="col-12 mb-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="">Discount Total</label>
+            </div>
+            <input type="text" class="form-control" formControlName="totalDiscount" readonly />
+          </div>
+        </div>
+        <div class="col-12 mb-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="">Paid Total</label>
+            </div>
+            <input type="text" class="form-control" formControlName="paidAmount" />
+          </div>
+        </div>
+        <div class="col-12 mb-2">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="">Due Total</label>
+            </div>
+            <input type="text" class="form-control" formControlName="dueAmount" readonly />
+          </div>
+        </div>
+
+        <div class="col-12 mb-2">
+          <input type="button" class="form-control" value="Save Changes" (click)="saveInventoryData" />  
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>
